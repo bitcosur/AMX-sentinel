@@ -16,12 +16,12 @@ def test_amerod():
     config_text = AmeroConfig.slurp_config_file(config.amero_conf)
     network = 'mainnet'
     is_testnet = False
-    genesis_hash = u'00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6' # TODO: update
+    genesis_hash = u'0x000004dc9bd956bf79a7b1687ae0829a9af924b192d564fc77cea2fd9572b3f3'
     for line in config_text.split("\n"):
         if line.startswith('testnet=1'):
             network = 'testnet'
             is_testnet = True
-            genesis_hash = u'00000bafbc94add76cb75e2ec92894837288a481e5c005f6563d91623bf8bc2c' # TODO: udpate
+            genesis_hash = u'00000113427a40ffd316e8d2c6104d662d86e7263352c2edb3c974f1d283d2b7'
 
     creds = AmeroConfig.get_rpc_creds(config_text, network)
     amerod = AmeroDaemon(**creds)
@@ -29,7 +29,7 @@ def test_amerod():
 
     assert hasattr(amerod, 'rpc_connection')
 
-    # Amero testnet block 0 hash == 00000bafbc94add76cb75e2ec92894837288a481e5c005f6563d91623bf8bc2c # TODO: update
+    # Amero testnet block 0 hash == 0x000004dc9bd956bf79a7b1687ae0829a9af924b192d564fc77cea2fd9572b3f3
     # test commands without arguments
     info = amerod.rpc_command('getinfo')
     info_keys = [
